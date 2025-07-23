@@ -48,7 +48,7 @@ Este proyecto proporciona un stack completo de monitoreo para sistemas y contene
 1. **Clona este repositorio:**
    ```sh
    git clone https://github.com/tu-usuario/tu-repo.git
-   cd tu-repo
+   cd Stack-de-Monitoreo
    ```
 
 2. **Inicia los servicios:**

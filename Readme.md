@@ -4,11 +4,15 @@ Este proyecto proporciona un stack completo de monitoreo para sistemas y contene
 
 ## Servicios Incluidos
 
-- **Prometheus**: Recolección y almacenamiento de métricas.
-- **Grafana**: Visualización de métricas y dashboards.
-- **Alertmanager**: Gestión y envío de alertas.
-- **Node Exporter**: Exporta métricas del sistema operativo.
-- **cAdvisor**: Exporta métricas de contenedores Docker.
+- **Prometheus**: Gestiona la recopilación y el almacenamiento de datos de series temporales. Extrae métricas de los exportadores y otros endpoints según su configuración. El --web.enable-lifecycleindicador le permite activar recargas de configuración sin reiniciar el contenedor.
+
+- **Grafana**: Visualización de métricas y dashboards. Se basa en Prometheus y ofrece una interfaz intuitiva para visualizar tus datos. Las carpetas de aprovisionamiento ( datasourcesy dashboards) garantizan que todo se configure automáticamente en la primera ejecución.
+
+- **Alertmanager**: Gestión y envío de alertas. Recibe alertas de Prometheus y las envía al lugar correcto: Slack, PagerDuty, correo electrónico, etc. Montar la configuración desde su carpeta local facilita su ajuste a medida que evolucionan sus necesidades de alerta.
+
+- **Node Exporter**: recopila métricas de bajo nivel del sistema del host, como el uso de CPU, la memoria y las estadísticas del disco. Utilizamos el modo de montaje /procy /syssolo lectura para que Prometheus pueda extraer métricas precisas del host sin afectar el sistema.
+
+- **cAdvisor**: se centra en las métricas a nivel de contenedor y ofrece información sobre el uso de recursos por contenedor, lo cual resulta útil cuando se ejecutan varios servicios en el mismo host.
 
 ## Estructura del Proyecto
 
@@ -75,3 +79,9 @@ MIT
 ---
 
 > Proyecto desarrollado para monitoreo de sistemas y contenedores con tecnologías open
+
+Prometheus gestiona la recopilación y el almacenamiento de datos de series temporales. Extrae métricas de los exportadores y otros endpoints según su configuración. El --web.enable-lifecycleindicador le permite activar recargas de configuración sin reiniciar el contenedor.
+El Exportador de Nodos recopila métricas de bajo nivel del sistema del host, como el uso de CPU, la memoria y las estadísticas del disco. Utilizamos el modo de montaje /procy /syssolo lectura para que Prometheus pueda extraer métricas precisas del host sin afectar el sistema.
+cAdvisor se centra en las métricas a nivel de contenedor y ofrece información sobre el uso de recursos por contenedor, lo cual resulta útil cuando se ejecutan varios servicios en el mismo host.
+Grafana se basa en Prometheus y ofrece una interfaz intuitiva para visualizar tus datos. Las carpetas de aprovisionamiento ( datasourcesy dashboards) garantizan que todo se configure automáticamente en la primera ejecución.
+Alertmanager recibe alertas de Prometheus y las envía al lugar correcto: Slack, PagerDuty, correo electrónico, etc. Montar la configuración desde su carpeta local facilita su ajuste a medida que evolucionan sus necesidades de alerta.

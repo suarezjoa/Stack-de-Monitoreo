@@ -15,7 +15,7 @@ global:
 target:
   # Data source name always has a URI schema that matches the driver name. In some cases (e.g. MySQL)
   # the schema gets dropped or replaced to match the driver expected DSN format.
-  data_source_name: 'sqlserver://SA:Gus001pin@10.1.6.69:1433'
+  data_source_name: 'sqlserver://user:pass@host:1433'
 
   # Collectors (referenced by name) to execute on the target.
   collectors: [mssql_standard]

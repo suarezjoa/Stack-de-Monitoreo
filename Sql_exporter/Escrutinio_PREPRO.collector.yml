@@ -1,0 +1,18 @@
+collector_name: escrutinio_metrics
+
+metrics:
+  - metric_name: sync_dim_insertar_duration_seconds
+    type: gauge
+    help: 'Tiempo de ejecución de sync.Dim_Insertar en segundos'
+    values: [duration_seconds]
+    query: |
+      DECLARE @inicio DATETIME = GETUTCDATE();
+      EXEC Escrutinio_PREPRO.sync.Dim_Insertar;
+      SELECT DATEDIFF(MILLISECOND, @inicio, GETUTCDATE()) / 1000.0 AS duration_seconds;
+
+  - metric_name: sync_dim_insertar_last_execution
+    type: gauge
+    help: 'Momento de la última ejecución de sync.Dim_Insertar (timestamp Unix)'
+    values: [timestamp_seconds]
+    query: |
+      SELECT DATEDIFF(SECOND, '19700101', GETUTCDATE()) AS timestamp_seconds;
